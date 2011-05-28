@@ -2,9 +2,12 @@ package GUI;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import java.applet.Applet;
 import utilities.Encryption;
+import datatstructures.EmployeeRecord;
 
 public class MainInterface extends JFrame implements ActionListener {
 
@@ -23,7 +26,7 @@ public class MainInterface extends JFrame implements ActionListener {
     JButton btnAbout;
     JButton btnLogin;
     Font fntLabels;
-    
+    public static EmployeeRecord test[];
 
     public MainInterface(String title) {
         super(title);
@@ -35,6 +38,11 @@ public class MainInterface extends JFrame implements ActionListener {
         MainInterface mainMenu = new MainInterface("Main Menu");
         mainMenu.setSize(1000, 800);
         mainMenu.setVisible(true);
+        test = new EmployeeRecord[1];
+        test[1].setFirstName("Chris");
+        test[1].setLastName("Niesel");
+        test[1].setEmployeeNumber(10001);
+        test[1].setPassword("A94A8FE5CCB19BA61C4C0873D391E987982FBBD3");
 
     }
 
@@ -123,12 +131,34 @@ public class MainInterface extends JFrame implements ActionListener {
 
     }
 
+    public void checkLogin() throws Exception {
+        int tempNumber = Integer.parseInt(txtEmployee.getText());
+        String tempHash = Encryption.makeHash(txtPass.getText());
+        System.out.println(tempHash);
+        if (test[0].getPassword().equals(tempHash) && tempNumber == test[0].getEmployeeNumber()) {
+            System.out.println("Password is correct");
+        } else {
+            txtEmployee.setText("");
+            txtPass.setText("");
+            System.out.println("User or Password incorrect");
+        }
+    }
+
     public void actionPerformed(ActionEvent e) {
         String arg = e.getActionCommand();
         Object source = e.getSource();
         this.setVisible(false);
-       // ManagerInterface manager = new ManagerInterface("Manager");
-       // CashierInterface cashier = new CashierInterface("Cashier");
+        if (source == btnLogin) {
+
+            System.out.println("Login Pressed");
+            try {
+                checkLogin();
+            } catch (Exception ex) {
+                Logger.getLogger(MainInterface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        // ManagerInterface manager = new ManagerInterface("Manager");
+        // CashierInterface cashier = new CashierInterface("Cashier");
 
     }
 }
