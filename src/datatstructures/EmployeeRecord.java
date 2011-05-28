@@ -54,7 +54,7 @@ public class EmployeeRecord extends Record {
         return lastName;
     }
 
-    public String getPass() {
+    public String getPassword() {
         return password;
     }
 
@@ -70,7 +70,7 @@ public class EmployeeRecord extends Record {
         employeeNumber = n;
     }
 
-    public void setPass(String hash) {
+    public void setPassword(String hash) {
         password = hash;
     }
 }
