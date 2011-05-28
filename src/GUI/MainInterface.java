@@ -37,8 +37,15 @@ public class MainInterface extends JFrame implements ActionListener {
 
     public static void main(String args[]) {
         MainInterface mainMenu = new MainInterface("Main Menu");
-        mainMenu.setSize(1000, 800);
+        //center window on screen
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screen.width - 1000) / 2;
+        int y = (screen.height - 800) / 2;
+        mainMenu.setBounds(x, y, 1000, 800);
         mainMenu.setVisible(true);
+
+        //disable resize
+        mainMenu.setResizable(false);
 
         // static login user
         test = new EmployeeRecord[1];
@@ -148,10 +155,15 @@ public class MainInterface extends JFrame implements ActionListener {
         System.out.println(tempHash);
         if (test[0].getPassword().equals(tempHash) && tempNumber == test[0].getEmployeeNumber()) {
             System.out.println("Password is correct");
+            this.setVisible(false);
         } else {
+            // clear fields
             txtEmployee.setText("");
-            //txtPass.setText("");
             passField.setText("");
+            //txtPass.setText("");
+
+            // Show dialog with Message
+            JOptionPane.showMessageDialog(rootPane, "User or Password Incorrect");
             System.out.println("User or Password incorrect");
         }
 
@@ -161,7 +173,7 @@ public class MainInterface extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String arg = e.getActionCommand();
         Object source = e.getSource();
-        this.setVisible(false);
+        //this.setVisible(false);
         if (source == btnLogin) {
 
             System.out.println("Login Pressed");
