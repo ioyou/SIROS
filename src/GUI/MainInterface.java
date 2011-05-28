@@ -36,6 +36,10 @@ public class MainInterface extends JFrame implements ActionListener {
     }
 
     public static void main(String args[]) {
+
+        //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+
+
         MainInterface mainMenu = new MainInterface("Main Menu");
         //center window on screen
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
