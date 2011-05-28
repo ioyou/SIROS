@@ -11,20 +11,21 @@ import java.security.*;
  *
  */
 public class Encryption {
-
+    /*
     public static void main(String arg[]) {
-        try {
-            System.out.print("Please enter your password: ");
-            String pass = Keyboard.readString();
-            String hash = makeHash(pass);
-            System.out.println("The computed hash is: " + hash);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    try {
+    System.out.print("Please enter your password: ");
+    String pass = Keyboard.readString();
+    String hash = makeHash(pass);
+    System.out.println("The computed hash is: " + hash);
+    } catch (Exception e) {
+    e.printStackTrace();
     }
-
+    
+    }
+     */
     // compute hash
+
     public static String makeHash(String password) throws UnsupportedEncodingException, Exception {
         String input = password;
         String hash = byteArrayToHexString(computeHash(input));
