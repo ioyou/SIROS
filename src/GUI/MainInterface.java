@@ -26,6 +26,7 @@ public class MainInterface extends JFrame implements ActionListener {
     JButton btnAbout;
     JButton btnLogin;
     Font fntLabels;
+    //EmployeeRecord for checking login
     public static EmployeeRecord test[];
 
     public MainInterface(String title) {
@@ -38,7 +39,10 @@ public class MainInterface extends JFrame implements ActionListener {
         MainInterface mainMenu = new MainInterface("Main Menu");
         mainMenu.setSize(1000, 800);
         mainMenu.setVisible(true);
+
+        // static login user
         test = new EmployeeRecord[1];
+        test[1] = new EmployeeRecord();
         test[1].setFirstName("Chris");
         test[1].setLastName("Niesel");
         test[1].setEmployeeNumber(10001);
