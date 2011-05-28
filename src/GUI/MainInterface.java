@@ -5,7 +5,6 @@ import java.awt.event.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
-import java.applet.Applet;
 import utilities.Encryption;
 import datatstructures.EmployeeRecord;
 
@@ -20,7 +19,8 @@ public class MainInterface extends JFrame implements ActionListener {
     JLabel lblEmployee;
     JLabel lblPass;
     JTextField txtEmployee;
-    JTextField txtPass;
+    //JTextField txtPass;
+    JPasswordField passField;
     JRadioButton rbtnManager;
     JRadioButton rbtnCashier;
     JButton btnAbout;
@@ -42,11 +42,11 @@ public class MainInterface extends JFrame implements ActionListener {
 
         // static login user
         test = new EmployeeRecord[1];
-        test[1] = new EmployeeRecord();
-        test[1].setFirstName("Chris");
-        test[1].setLastName("Niesel");
-        test[1].setEmployeeNumber(10001);
-        test[1].setPassword("A94A8FE5CCB19BA61C4C0873D391E987982FBBD3");
+        test[0] = new EmployeeRecord();
+        test[0].setFirstName("Chris");
+        test[0].setLastName("Niesel");
+        test[0].setEmployeeNumber(10001);
+        test[0].setPassword("A94A8FE5CCB19BA61C4C0873D391E987982FBBD3");
 
     }
 
@@ -103,9 +103,12 @@ public class MainInterface extends JFrame implements ActionListener {
         txtEmployee = new JTextField(20);
         txtEmployee.setBounds(510, 225, 250, 40);
         txtEmployee.setFont(fntLabels);
-        txtPass = new JTextField(20);
-        txtPass.setBounds(510, 300, 250, 40);
-        txtPass.setFont(fntLabels);
+        passField = new JPasswordField(20);
+        passField.setBounds(510, 300, 250, 40);
+        passField.setFont(fntLabels);
+        //txtPass = new JTextField(20);
+        //txtPass.setBounds(510, 300, 250, 40);
+        //txtPass.setFont(fntLabels);
 
         /*Buttons*/
         btnAbout = new JButton("About");
@@ -122,7 +125,8 @@ public class MainInterface extends JFrame implements ActionListener {
         pnlLogin.add(lblEmployee);
         pnlLogin.add(txtEmployee);
         pnlLogin.add(lblPass);
-        pnlLogin.add(txtPass);
+        //pnlLogin.add(txtPass);
+        pnlLogin.add(passField);
         pnlLogin.add(btnLogin);
         pnlLogin.add(btnAbout);
 
@@ -137,15 +141,21 @@ public class MainInterface extends JFrame implements ActionListener {
 
     public void checkLogin() throws Exception {
         int tempNumber = Integer.parseInt(txtEmployee.getText());
-        String tempHash = Encryption.makeHash(txtPass.getText());
+        //String tempHash = Encryption.makeHash(txtPass.getText());
+        //String tempHash = Encryption.makeHash(passField.getPassword());
+        String tempHash = new String(passField.getPassword());
+        tempHash = Encryption.makeHash(tempHash);
         System.out.println(tempHash);
         if (test[0].getPassword().equals(tempHash) && tempNumber == test[0].getEmployeeNumber()) {
             System.out.println("Password is correct");
         } else {
             txtEmployee.setText("");
-            txtPass.setText("");
+            //txtPass.setText("");
+            passField.setText("");
             System.out.println("User or Password incorrect");
         }
+
+
     }
 
     public void actionPerformed(ActionEvent e) {
