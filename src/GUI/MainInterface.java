@@ -2,8 +2,6 @@ package GUI;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.event.KeyListener;
-import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -24,8 +22,6 @@ public class MainInterface extends JFrame implements ActionListener {
     JLabel lblEmployee;
     JLabel lblPass;
     JTextField txtEmployee;
-    //JFormattedTextField ftxtEmployee;
-    //JTextField txtPass;
     JPasswordField passField;
     JRadioButton rbtnManager;
     JRadioButton rbtnCashier;
@@ -44,13 +40,13 @@ public class MainInterface extends JFrame implements ActionListener {
     public static void main(String args[]) {
 
         //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-
-
         MainInterface mainMenu = new MainInterface("Main Menu");
+        mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //center window on screen
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (screen.width - 1000) / 2;
         int y = (screen.height - 800) / 2;
+
         mainMenu.setBounds(x, y, 1000, 800);
         mainMenu.setVisible(true);
 
@@ -64,12 +60,9 @@ public class MainInterface extends JFrame implements ActionListener {
         test[0].setLastName("Niesel");
         test[0].setEmployeeNumber(10001);
         test[0].setPassword("A94A8FE5CCB19BA61C4C0873D391E987982FBBD3");
-
-
     }
 
     public void init() {
-
         fntLabels = new Font("Britannic Bold", Font.BOLD, 20);
         initializeLogos();
         initializeLogin();
@@ -78,7 +71,6 @@ public class MainInterface extends JFrame implements ActionListener {
     public void initializeLogos() {
         pnlLogos = new JPanel();
         pnlLogos.setLayout(null);
-
         imgLogo = new ImageIcon("Logo2.jpg");
         lblImg = new JLabel();
         lblImg.setIcon(imgLogo);
@@ -126,15 +118,10 @@ public class MainInterface extends JFrame implements ActionListener {
         txtEmployee = new JTextField(20);
         txtEmployee.setBounds(510, 225, 250, 40);
         txtEmployee.setFont(fntLabels);
-        //ftxtEmployee = new JFormattedTextField(NumberFormat.getInstance());
-        //ftxtEmployee.setBounds(510, 225, 250, 40);
-        //ftxtEmployee.setFont(fntLabels);
+
         passField = new JPasswordField(20);
         passField.setBounds(510, 300, 250, 40);
         passField.setFont(fntLabels);
-        //txtPass = new JTextField(20);
-        //txtPass.setBounds(510, 300, 250, 40);
-        //txtPass.setFont(fntLabels);
 
         /*Buttons*/
         btnAbout = new JButton("About");
@@ -150,9 +137,7 @@ public class MainInterface extends JFrame implements ActionListener {
         pnlLogin.add(rbtnCashier);
         pnlLogin.add(lblEmployee);
         pnlLogin.add(txtEmployee);
-        //pnlLogin.add(ftxtEmployee);
         pnlLogin.add(lblPass);
-        //pnlLogin.add(txtPass);
         pnlLogin.add(passField);
         pnlLogin.add(btnLogin);
         pnlLogin.add(btnAbout);
@@ -166,48 +151,49 @@ public class MainInterface extends JFrame implements ActionListener {
 
     }
 
-    public void checkLogin() throws Exception {
-        int tempNumber = Integer.parseInt(txtEmployee.getText());
-        //String tempHash = Encryption.makeHash(txtPass.getText());
-        //String tempHash = Encryption.makeHash(passField.getPassword());
-        //int tempNumber = Integer.parseInt(ftxtEmployee.getText());
-        String tempHash = new String(passField.getPassword());
-        tempHash = Encryption.makeHash(tempHash);
-        System.out.println(tempHash);
-        if (test[0].getPassword().equals(tempHash) && tempNumber == test[0].getEmployeeNumber()) {
-            System.out.println("Password is correct");
-            this.setVisible(false);
-        } else {
-            // clear fields
-            txtEmployee.setText("");
-            //ftxtEmployee.setText("");
-            passField.setText("");
-            //txtPass.setText("");
-
-            // Show dialog with Message
-            JOptionPane.showMessageDialog(rootPane, "User or Password Incorrect");
-            System.out.println("User or Password incorrect");
+    public boolean isNumeric(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            // input not numeric
+            return false;
         }
-
-
     }
 
-    public void keyTyped(KeyEvent ke) {
-        char c = ke.getKeyChar();
-        if (!Character.isDigit(c)) {
-            ke.consume();
+    public void checkLogin() throws Exception {
+        if (isNumeric(txtEmployee.getText())) {
+            int tempNumber = Integer.parseInt(txtEmployee.getText());
+            String tempHash = new String(passField.getPassword());
+            tempHash = Encryption.makeHash(tempHash);
+            System.out.println(tempHash);
+            if (test[0].getPassword().equals(tempHash) && tempNumber == test[0].getEmployeeNumber()) {
+                System.out.println("Password is correct");
+                this.setVisible(false);
+            } else {
+                // clear fields
+                txtEmployee.setText("");
+                passField.setText("");
+                // Show dialog with Message
+                JOptionPane.showMessageDialog(rootPane, "User or Password Incorrect");
+                System.out.println("User or Password incorrect");
+            }
+        } else {
+            txtEmployee.setText("");
+            passField.setText("");
+            JOptionPane.showMessageDialog(rootPane, "User or Password Incorrect");
         }
     }
 
     public void actionPerformed(ActionEvent e) {
         String arg = e.getActionCommand();
         Object source = e.getSource();
-        //this.setVisible(false);
         if (source == btnLogin) {
 
             System.out.println("Login Pressed");
             try {
                 checkLogin();
+
             } catch (Exception ex) {
                 Logger.getLogger(MainInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
