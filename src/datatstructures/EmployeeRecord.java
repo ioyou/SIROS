@@ -14,12 +14,15 @@ public class EmployeeRecord extends Record {
     private String lastName;
     private int employeeNumber;
     private String password;
+    private boolean manager;
 
-    public EmployeeRecord(String fname, String lname, int number, String pass) {
+    public EmployeeRecord(String fname, String lname, int number, String pass, boolean mang) {
         firstName = fname;
         lastName = lname;
         employeeNumber = number;
         password = pass;
+        manager = mang;
+
     }
 
     public EmployeeRecord() {
@@ -58,6 +61,10 @@ public class EmployeeRecord extends Record {
         return password;
     }
 
+    public boolean isManager() {
+        return manager;
+    }
+
     public void setFirstName(String fName) {
         firstName = fName;
     }
@@ -72,5 +79,9 @@ public class EmployeeRecord extends Record {
 
     public void setPassword(String hash) {
         password = hash;
+    }
+
+    public void setManager(boolean isManager) {
+        manager = isManager;
     }
 }
