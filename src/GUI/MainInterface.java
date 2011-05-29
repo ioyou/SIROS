@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import utilities.Encryption;
 import datatstructures.EmployeeRecord;
+//import java.text.NumberFormat;
 
 public class MainInterface extends JFrame implements ActionListener {
 
@@ -19,6 +20,7 @@ public class MainInterface extends JFrame implements ActionListener {
     JLabel lblEmployee;
     JLabel lblPass;
     JTextField txtEmployee;
+    //JFormattedTextField ftxtEmployee;
     //JTextField txtPass;
     JPasswordField passField;
     JRadioButton rbtnManager;
@@ -117,6 +119,9 @@ public class MainInterface extends JFrame implements ActionListener {
         txtEmployee = new JTextField(20);
         txtEmployee.setBounds(510, 225, 250, 40);
         txtEmployee.setFont(fntLabels);
+        //ftxtEmployee = new JFormattedTextField(NumberFormat.getInstance());
+        //ftxtEmployee.setBounds(510, 225, 250, 40);
+        //ftxtEmployee.setFont(fntLabels);
         passField = new JPasswordField(20);
         passField.setBounds(510, 300, 250, 40);
         passField.setFont(fntLabels);
@@ -138,6 +143,7 @@ public class MainInterface extends JFrame implements ActionListener {
         pnlLogin.add(rbtnCashier);
         pnlLogin.add(lblEmployee);
         pnlLogin.add(txtEmployee);
+        //pnlLogin.add(ftxtEmployee);
         pnlLogin.add(lblPass);
         //pnlLogin.add(txtPass);
         pnlLogin.add(passField);
@@ -157,6 +163,7 @@ public class MainInterface extends JFrame implements ActionListener {
         int tempNumber = Integer.parseInt(txtEmployee.getText());
         //String tempHash = Encryption.makeHash(txtPass.getText());
         //String tempHash = Encryption.makeHash(passField.getPassword());
+        //int tempNumber = Integer.parseInt(ftxtEmployee.getText());
         String tempHash = new String(passField.getPassword());
         tempHash = Encryption.makeHash(tempHash);
         System.out.println(tempHash);
@@ -166,6 +173,7 @@ public class MainInterface extends JFrame implements ActionListener {
         } else {
             // clear fields
             txtEmployee.setText("");
+            //ftxtEmployee.setText("");
             passField.setText("");
             //txtPass.setText("");
 
