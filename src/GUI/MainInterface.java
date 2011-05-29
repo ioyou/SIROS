@@ -164,10 +164,12 @@ public class MainInterface extends JFrame implements ActionListener {
 
     public void checkLogin() throws Exception {
         if (isNumeric(txtEmployee.getText())) {
+            
             int tempNumber = Integer.parseInt(txtEmployee.getText());
             String tempHash = new String(passField.getPassword());
             tempHash = Encryption.makeHash(tempHash);
             System.out.println(tempHash);
+            
             if (test[0].getPassword().equals(tempHash) && tempNumber == test[0].getEmployeeNumber()) {
                 System.out.println("Password is correct");
                 this.setVisible(false);
