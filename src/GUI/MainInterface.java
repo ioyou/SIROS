@@ -100,6 +100,9 @@ public class MainInterface extends JFrame implements ActionListener {
         rbtnCashier.setBounds(550, 80, 160, 30);
         rbtnCashier.setFont(fntLabels);
         rbtnCashier.setBackground(cooBlue);
+        ButtonGroup bg1 = new ButtonGroup();
+        bg1.add(rbtnManager);
+        bg1.add(rbtnCashier);
 
 
         /*Labels*/
