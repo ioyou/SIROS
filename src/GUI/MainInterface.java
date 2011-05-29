@@ -2,6 +2,8 @@ package GUI;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -63,6 +65,7 @@ public class MainInterface extends JFrame implements ActionListener {
         test[0].setEmployeeNumber(10001);
         test[0].setPassword("A94A8FE5CCB19BA61C4C0873D391E987982FBBD3");
 
+
     }
 
     public void init() {
@@ -90,6 +93,8 @@ public class MainInterface extends JFrame implements ActionListener {
     }
 
     public void initializeLogin() {
+
+
         pnlLogin = new JPanel();
         pnlLogin.setLayout(null);
         //Color cooBlue = new Color (163, 199, 253);
@@ -185,6 +190,13 @@ public class MainInterface extends JFrame implements ActionListener {
         }
 
 
+    }
+
+    public void keyTyped(KeyEvent ke) {
+        char c = ke.getKeyChar();
+        if (!Character.isDigit(c)) {
+            ke.consume();
+        }
     }
 
     public void actionPerformed(ActionEvent e) {
