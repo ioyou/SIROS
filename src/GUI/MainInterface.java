@@ -38,6 +38,8 @@ public class MainInterface extends JFrame implements ActionListener {
 
         //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         MainInterface mainMenu = new MainInterface("Main Menu");
+        
+        //close program when clicking x
         mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //center window on screen
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -50,7 +52,7 @@ public class MainInterface extends JFrame implements ActionListener {
         //disable resize
         mainMenu.setResizable(false);
 
-        // static login user
+        //static login user
         test = new EmployeeRecord[1];
         test[0] = new EmployeeRecord();
         test[0].setFirstName("Chris");
@@ -148,7 +150,7 @@ public class MainInterface extends JFrame implements ActionListener {
 
 
     }
-
+    //check if string is numerical
     public boolean isNumeric(String input) {
         try {
             Integer.parseInt(input);
