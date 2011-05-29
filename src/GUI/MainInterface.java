@@ -9,6 +9,8 @@ import utilities.Encryption;
 import datatstructures.EmployeeRecord;
 //import java.text.NumberFormat;
 
+// how ot remove commas from numberformat boxes 
+// http://www.java-forums.org/advanced-java/12784-getting-rid-commas-large-numbers.html
 public class MainInterface extends JFrame implements ActionListener {
 
     JFrame f;
