@@ -38,7 +38,7 @@ public class MainInterface extends JFrame implements ActionListener {
 
         //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         MainInterface mainMenu = new MainInterface("Main Menu");
-        
+
         //close program when clicking x
         mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //center window on screen
@@ -71,7 +71,7 @@ public class MainInterface extends JFrame implements ActionListener {
     public void initializeLogos() {
         pnlLogos = new JPanel();
         pnlLogos.setLayout(null);
-        imgLogo = new ImageIcon("Logo2.jpg");
+        imgLogo = new ImageIcon(this.getClass().getResource("/images/Logo2.jpg")); /*new ImageIcon("Logo2.jpg");*/
         lblImg = new JLabel();
         lblImg.setIcon(imgLogo);
         lblImg.setBounds(0, 0, 1000, 210);
@@ -151,6 +151,7 @@ public class MainInterface extends JFrame implements ActionListener {
 
     }
     //check if string is numerical
+
     public boolean isNumeric(String input) {
         try {
             Integer.parseInt(input);
