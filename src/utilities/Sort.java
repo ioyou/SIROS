@@ -1,14 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package utilities;
 
 /**
  *
  * @author nieschri125
  */
-import datatstructures.EmployeeRecord;
+import datatstructures.*;
 
 public class Sort {
 
@@ -42,6 +38,7 @@ public class Sort {
 
 
     }
+    // sort Employee by lastName
 
     public static void bubbleLastname(EmployeeRecord[] data) {
         int last = data.length - 1;
@@ -61,6 +58,27 @@ public class Sort {
         }
 
     }
+    //sort Inventory by name
+
+    public static void bubbleName(InventoryRecord[] data) {
+        int last = data.length - 1;
+        String temp1;
+        String temp2;
+        for (int i = 0; i < data.length - 1; i++) {
+            for (int j = 0; j < last; j++) {
+                temp1 = data[j].getDescription();
+                temp2 = data[j + 1].getDescription();
+
+                if (temp1.compareTo(temp2) > 0) {
+                    swapRecord(data, j, j + 1);
+                }
+            }
+            last--;
+
+        }
+
+    }
+    //sort employee record by their #
 
     public static void bubbleNumber(EmployeeRecord[] data) {
         int last = data.length - 1;
@@ -68,6 +86,38 @@ public class Sort {
         for (int i = 0; i < data.length - 1; i++) {
             for (int j = 0; j < last; j++) {
                 if (data[j].getEmployeeNumber() > data[j + 1].getEmployeeNumber()) {
+                    swapRecord(data, j, j + 1);
+                }
+            }
+            last--;
+
+        }
+
+    }
+    //sort inventory by item #
+
+    public static void bubbleNumber(InventoryRecord[] data) {
+        int last = data.length - 1;
+
+        for (int i = 0; i < data.length - 1; i++) {
+            for (int j = 0; j < last; j++) {
+                if (data[j].getNumber() > data[j + 1].getNumber()) {
+                    swapRecord(data, j, j + 1);
+                }
+            }
+            last--;
+
+        }
+
+    }
+    //sort Inventory by price
+
+    public static void bubblePrice(InventoryRecord[] data) {
+        int last = data.length - 1;
+
+        for (int i = 0; i < data.length - 1; i++) {
+            for (int j = 0; j < last; j++) {
+                if (data[j].getPrice() > data[j + 1].getPrice()) {
                     swapRecord(data, j, j + 1);
                 }
             }
@@ -91,6 +141,12 @@ public class Sort {
 
     public static void swapRecord(EmployeeRecord[] data, int i, int j) {
         EmployeeRecord tmp = data[i];
+        data[i] = data[j];
+        data[j] = tmp;
+    }
+
+    public static void swapRecord(InventoryRecord[] data, int i, int j) {
+        InventoryRecord tmp = data[i];
         data[i] = data[j];
         data[j] = tmp;
     }
