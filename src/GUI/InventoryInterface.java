@@ -3,7 +3,6 @@ package GUI;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.applet.Applet;
 import datatstructures.*;
 
 public class InventoryInterface extends JFrame implements ActionListener {
@@ -69,8 +68,7 @@ public class InventoryInterface extends JFrame implements ActionListener {
         String[] columnNames = {"Item #",
             "Description",
             "Quantity",
-            "Cost", "Price",
-        };
+            "Cost", "Price",};
 
         Object[][] data = {{"1", "Campbell's Soup",
                 "2", "$3.00", "$ 5.00"
@@ -150,8 +148,7 @@ public class InventoryInterface extends JFrame implements ActionListener {
         String[] columnNames = {"Item #",
             "Description",
             "Quantity",
-            "Cost", "Price",
-        };
+            "Cost", "Price",};
         Object[][] data = {{"1", "Campbell's Soup",
                 "2", "$ 5.00", "$3.00"
             }
@@ -253,6 +250,7 @@ public class InventoryInterface extends JFrame implements ActionListener {
 
         btnOK.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 /* Blank out the dialog box*/
 
@@ -264,6 +262,7 @@ public class InventoryInterface extends JFrame implements ActionListener {
 
         btnCancel.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 /* Blank out the dialog box*/
 
@@ -302,7 +301,7 @@ public class InventoryInterface extends JFrame implements ActionListener {
         layout.putConstraint(SpringLayout.NORTH, lblPrice, 100, SpringLayout.NORTH, this);
 
 
-        JTextField txtQuantity = new JTextField(20);
+        final JTextField txtQuantity = new JTextField(20);
         layout.putConstraint(SpringLayout.WEST, txtQuantity, 90, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, txtQuantity, 10, SpringLayout.NORTH, this);
         JTextField txtDesc = new JTextField(20);
@@ -351,6 +350,7 @@ public class InventoryInterface extends JFrame implements ActionListener {
 
         btnCancel.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 /* Blank out the dialog box*/
 
@@ -394,6 +394,7 @@ public class InventoryInterface extends JFrame implements ActionListener {
 
         btnOK.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 /* Blank out the dialog box*/
 
@@ -405,6 +406,7 @@ public class InventoryInterface extends JFrame implements ActionListener {
 
         btnCancel.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 /* Blank out the dialog box*/
 
@@ -414,6 +416,7 @@ public class InventoryInterface extends JFrame implements ActionListener {
         });
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
 
         String arg = e.getActionCommand();
