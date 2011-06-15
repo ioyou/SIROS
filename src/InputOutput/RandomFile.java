@@ -177,7 +177,7 @@ public class RandomFile implements DataFile {
             StringBuffer ma = new StringBuffer("");
             Boolean manager = record.isManager();
             String isManager;
-            if (manager = true) {
+            if (manager == true) {
                 isManager = "true";
             } else {
                 isManager = "false";
@@ -234,7 +234,7 @@ public class RandomFile implements DataFile {
             StringBuffer ma = new StringBuffer("");
             Boolean manager = record.isManager();
             String isManager;
-            if (manager = true) {
+            if (manager == true) {
                 isManager = "true";
             } else {
                 isManager = "false";
