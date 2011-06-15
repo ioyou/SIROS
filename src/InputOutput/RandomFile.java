@@ -197,9 +197,61 @@ public class RandomFile implements DataFile {
     }
 
     /***************
-     * Not used as of now
+     * Write record at specific location
      * *************/
     public void writeNextRecord(EmployeeRecord record, long recordNumber) {
+        try {
+//go to specifc record
+            raf.seek(RECLEN * recordNumber);
+            raf.writeInt(record.getEmployeeNumber());
+            StringBuffer fn = new StringBuffer("");
+            String firstName = record.getFirstName();
+            for (int j = 0; j < FIELD_SIZE; j++) {
+                if (j < firstName.length()) {
+                    raf.writeChar(firstName.charAt(j));
+                } else {
+                    raf.writeChar(' ');
+                }
+            }//end for
+            StringBuffer ln = new StringBuffer("");
+            String lastName = record.getLastName();
+            for (int j = 0; j < FIELD_SIZE; j++) {
+                if (j < lastName.length()) {
+                    raf.writeChar(lastName.charAt(j));
+                } else {
+                    raf.writeChar(' ');
+                }
+            }//end for
+            StringBuffer ha = new StringBuffer("");
+            String hash = record.getPassword();
+            for (int j = 0; j < FIELD_SIZE; j++) {
+                if (j < hash.length()) {
+                    raf.writeChar(hash.charAt(j));
+                } else {
+                    raf.writeChar(' ');
+                }
+            }//end for
+            StringBuffer ma = new StringBuffer("");
+            Boolean manager = record.isManager();
+            String isManager;
+            if (manager = true) {
+                isManager = "true";
+            } else {
+                isManager = "false";
+            }
+            for (int j = 0; j < FIELD_SIZE; j++) {
+                if (j < isManager.length()) {
+                    raf.writeChar(isManager.charAt(j));
+                } else {
+                    raf.writeChar(' ');
+                }
+            }//end for
+            isManager = "";
+        }//end try
+        catch (IOException e) {
+            System.out.println("error=" + e.toString());
+        } // close catch
+
     }
 
     public String getNext() {
