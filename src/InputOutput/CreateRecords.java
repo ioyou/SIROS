@@ -31,7 +31,7 @@ public class CreateRecords {
             String lname = "Niesel";
             int number = 10001;
             Boolean manager = true;
-            String pass = "christopher";
+            String pass = "test";
 
             test = new EmployeeRecord();
             test.setEmployeeNumber(number);
