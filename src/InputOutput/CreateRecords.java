@@ -30,7 +30,7 @@ public class CreateRecords {
             String fname = "Chris";
             String lname = "Niesel";
             int number = 10001;
-            Boolean manager = true;
+            Boolean manager = false;
             String pass = "test";
 
             test = new EmployeeRecord();
