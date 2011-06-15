@@ -263,14 +263,20 @@ public class RandomFile implements DataFile {
 //to clear file contents
 
     public void clean() {
+        //delete raf file
+        File file = new File(fileName);
+        file.delete();
+        //create new file 
         try {
-            long temp = raf.length();
-            raf.setLength(0);
-            raf.setLength(temp);
-            raf.close();
-        } catch (IOException e) {
-            System.out.println("error=" + e.toString());
-        } // close catch
+            File file2 = new File(fileName);
+            if (file2.createNewFile()) {
+                System.out.println("Success!");
+            } else {
+                System.out.println("Error, file already exists.");
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
 
     }
 
