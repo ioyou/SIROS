@@ -260,6 +260,19 @@ public class RandomFile implements DataFile {
 
     public void writeNext(String field) {
     }
+//to clear file contents
+
+    public void clean() {
+        try {
+            long temp = raf.length();
+            raf.setLength(0);
+            raf.setLength(temp);
+            raf.close();
+        } catch (IOException e) {
+            System.out.println("error=" + e.toString());
+        } // close catch
+
+    }
 
     public void close() {
         try {

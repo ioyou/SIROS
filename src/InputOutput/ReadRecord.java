@@ -1,6 +1,7 @@
 package InputOutput;
 
 import datatstructures.EmployeeRecord;
+import Keyboard;
 
 /**
  *
@@ -22,6 +23,7 @@ public class ReadRecord {
         System.out.println(rdInRecord.getEmployeeNumber());
         System.out.println(rdInRecord.getPassword());
         System.out.println(rdInRecord.isManager());
+        System.out.print("Clear file?");
 
     }
 }
